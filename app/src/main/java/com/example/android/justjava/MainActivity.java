@@ -20,14 +20,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    /**
+     * This method is called when order button is clicked.
+     */
+    
     public void submitOrder(View view){
         int price = calculatePrice();
         String priceMessage = "Total: $" + price;
         priceMessage += "\nThank you!";
         displayMessage(priceMessage);
-
     }
 
+    /**
+     * Calculates the price of the order
+     *
+     * @return total price
+     */
     public int calculatePrice(){
         int price = quantity * 5;
         return price;
@@ -43,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         quantity = quantity - 1;
         displayQuantity(quantity);
     }
+
 
     private void displayQuantity(int quantityNumber) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
