@@ -21,18 +21,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void submitOrder(View view){
-        int price = quantity * 5;
+        int price = calculatePrice();
         String priceMessage = "Total: $" + price;
         priceMessage += "\nThank you!";
         displayMessage(priceMessage);
 
-        calculatePrice(quantity, 10);
     }
 
-    public void calculatePrice(int quantity, int pricePerCup){
-        int price = quantity * pricePerCup;
+    public int calculatePrice(){
+        int price = quantity * 5;
+        return price;
     }
-    
+
 
     public void increment(View view){
         quantity = quantity + 1;
