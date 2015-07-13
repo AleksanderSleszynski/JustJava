@@ -23,11 +23,9 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This method is called when order button is clicked.
      */
-    
     public void submitOrder(View view){
         int price = calculatePrice();
-        String priceMessage = "Total: $" + price;
-        priceMessage += "\nThank you!";
+        String priceMessage = createOrderSummary(price);
         displayMessage(priceMessage);
     }
 
@@ -36,11 +34,18 @@ public class MainActivity extends AppCompatActivity {
      *
      * @return total price
      */
-    public int calculatePrice(){
+    private int calculatePrice(){
         int price = quantity * 5;
         return price;
     }
 
+    private String createOrderSummary(int price){
+        String priceMessage = "Name: Kinia Kiniaczysko" +
+                "\nQuantity:" + quantity +
+                "\nTotal: $"+ price +
+                "\nThank you!";
+        return priceMessage;
+    }
 
     public void increment(View view){
         quantity = quantity + 1;
