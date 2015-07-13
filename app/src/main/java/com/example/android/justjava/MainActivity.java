@@ -25,8 +25,8 @@ public class MainActivity extends AppCompatActivity {
      */
     public void submitOrder(View view){
         int price = calculatePrice();
-        String priceMessage = createOrderSummary(price);
-        displayMessage(priceMessage);
+        displayMessage(createOrderSummary(price));
+
     }
 
     /**
@@ -35,10 +35,15 @@ public class MainActivity extends AppCompatActivity {
      * @return total price
      */
     private int calculatePrice(){
-        int price = quantity * 5;
-        return price;
+        return quantity * 5;
     }
 
+    /**
+     * Create summary of the order
+     *
+     * @param price of the order
+     * @return text summary
+     */
     private String createOrderSummary(int price){
         String priceMessage = "Name: Kinia Kiniaczysko" +
                 "\nQuantity:" + quantity +
