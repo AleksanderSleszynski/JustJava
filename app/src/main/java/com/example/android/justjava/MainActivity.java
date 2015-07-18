@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 
@@ -23,7 +24,9 @@ public class MainActivity extends AppCompatActivity {
      */
     public void submitOrder(View view){
         int price = calculatePrice();
-        displayMessage(createOrderSummary(price));
+        CheckBox whippedCreamCheckBox = (CheckBox) findViewById(R.id.whipped_cream_checkbox);
+        boolean hasWhippedCream =  whippedCreamCheckBox.isChecked();
+        displayMessage(createOrderSummary(price, hasWhippedCream));
 
     }
 
@@ -42,9 +45,10 @@ public class MainActivity extends AppCompatActivity {
      * @param price of the order
      * @return text summary
      */
-    private String createOrderSummary(int price){
+    private String createOrderSummary(int price, boolean hasWhippedCream){
         String priceMessage = "Name: Kinia Kiniaczysko" +
-                "\nQuantity:" + quantity +
+                "\nQuantity: " + quantity +
+                "\nAdd whipped cream? "+ hasWhippedCream +
                 "\nTotal: $"+ price +
                 "\nThank you!";
         return priceMessage;
