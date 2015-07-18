@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -82,11 +83,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void increment(View view){
+        if(quantity == 100){
+            // Show an error message as a toast
+            Toast.makeText(this, "You cannot have more than 100 coffee", Toast.LENGTH_SHORT).show();
+            // Exit this method early because there's nothing left to do
+            return;
+        }
         quantity = quantity + 1;
         displayQuantity(quantity);
     }
 
     public void decrement(View view){
+        if(quantity == 1){
+            // Show an error message as a toast
+            Toast.makeText(this, "You cannot have less than 1 coffee", Toast.LENGTH_LONG).show();
+            // Exit this method early becouse there's nothing left to do
+            return;
+        }
         quantity = quantity - 1;
         displayQuantity(quantity);
     }
