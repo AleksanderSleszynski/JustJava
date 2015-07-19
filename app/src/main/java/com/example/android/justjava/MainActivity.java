@@ -84,8 +84,7 @@ public class MainActivity extends AppCompatActivity {
         priceMessage +="\nThank you!";
 
         Intent email= new Intent(Intent.ACTION_SEND);
-        email.setData(Uri.parse("mailto: "));
-        email.setType("text/plain");
+        email.setData(Uri.parse("mailto:"));
         email.putExtra(email.EXTRA_SUBJECT, "JustJava order for " + name);
         email.putExtra(email.EXTRA_TEXT, priceMessage);
 
