@@ -38,7 +38,18 @@ public class MainActivity extends AppCompatActivity {
         boolean hasChocolate = chocolateCheckBox.isChecked();
 
         int price = calculatePrice(hasWhippedCream, hasChocolate);
-        createOrderSummary(price, hasWhippedCream, hasChocolate, name);
+        String message = createOrderSummary(price, hasWhippedCream, hasChocolate, name);
+
+
+        Intent email= new Intent(Intent.ACTION_SEND);
+        email.setData(Uri.parse("mailto:"));
+        email.setType("text/plain");
+        email.putExtra(email.EXTRA_SUBJECT, getString(R.string.order_summary_email_subject) + name);
+        email.putExtra(email.EXTRA_TEXT, message);
+
+        if (email.resolveActivity(getPackageManager()) != null) {
+            startActivity(email);
+        }
 
     }
 
@@ -76,21 +87,13 @@ public class MainActivity extends AppCompatActivity {
      */
     private String createOrderSummary(int price, boolean hasWhippedCream, boolean hasChocolate, String name){
 
-        String priceMessage = "Name: " + name;
-        priceMessage += "\nQuantity: " + quantity;
-        priceMessage += "\nAdd whipped cream? "+ hasWhippedCream;
-        priceMessage +="\nAdd chocolate? "+ hasChocolate;
-        priceMessage +="\nTotal: $"+ price;
-        priceMessage +="\nThank you!";
+        String priceMessage =  getString(R.string.order_summary_name) + name;
+        priceMessage += "\n" + getString(R.string.order_summary_quantity) + quantity;
+        priceMessage += "\n" + getString(R.string.order_summary_whipped_cream) + hasWhippedCream ;
+        priceMessage += "\n" + getString(R.string.order_summary_chocolate) + hasChocolate;
+        priceMessage += "\n" + getString(R.string.order_summary_price) + price;
+        priceMessage += "\n" + getString(R.string.thank_you);
 
-        Intent email= new Intent(Intent.ACTION_SEND);
-        email.setData(Uri.parse("mailto:"));
-        email.putExtra(email.EXTRA_SUBJECT, "JustJava order for " + name);
-        email.putExtra(email.EXTRA_TEXT, priceMessage);
-
-        if (email.resolveActivity(getPackageManager()) != null) {
-            startActivity(email);
-        }
         return priceMessage;
     }
 

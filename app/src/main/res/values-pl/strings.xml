@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Just Java</string>
+
+    <string name="hello_world">Witaj Świecie!</string>
+    <string name="action_settings">Ustawienia</string>
+    <string name="thank_you">Dziekuję!</string>
+    <string name="order_summary_price">Całośc: $</string>
+    <string name="order_summary_chocolate">Dodaj czekoladę? </string>
+    <string name="order_summary_whipped_cream">Dodaj bitą śmietanę? </string>
+    <string name="order_summary_quantity">Ilość: </string>
+    <string name="order_summary_name">Imię: </string>
+    <string name="order_summary_email_subject">JustJava zamównie dla</string>
+
+    <string name="name">Imię</string>
+    <string name="toppings">Polewy</string>
+    <string name="whipped_cream">Bita śmietana</string>
+    <string name="chocolate">Czekolada</string>
+    <string name="quantity">Ilość</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="order_button">Zamównie</string>
+
+
+</resources>
