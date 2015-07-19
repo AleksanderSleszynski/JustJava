@@ -1,5 +1,7 @@
 package com.example.android.justjava;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -36,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         boolean hasChocolate = chocolateCheckBox.isChecked();
 
         int price = calculatePrice(hasWhippedCream, hasChocolate);
-        displayMessage(createOrderSummary(price, hasWhippedCream, hasChocolate, name));
+        createOrderSummary(price, hasWhippedCream, hasChocolate, name);
 
     }
 
@@ -73,12 +75,23 @@ public class MainActivity extends AppCompatActivity {
      * @return text summary
      */
     private String createOrderSummary(int price, boolean hasWhippedCream, boolean hasChocolate, String name){
-        String priceMessage = "Name: " + name +
-                "\nQuantity: " + quantity +
-                "\nAdd whipped cream? "+ hasWhippedCream +
-                "\nAdd chocolate? "+ hasChocolate +
-                "\nTotal: $"+ price +
-                "\nThank you!";
+
+        String priceMessage = "Name: " + name;
+        priceMessage += "\nQuantity: " + quantity;
+        priceMessage += "\nAdd whipped cream? "+ hasWhippedCream;
+        priceMessage +="\nAdd chocolate? "+ hasChocolate;
+        priceMessage +="\nTotal: $"+ price;
+        priceMessage +="\nThank you!";
+
+        Intent email= new Intent(Intent.ACTION_SEND);
+        email.setData(Uri.parse("mailto: "));
+        email.setType("text/plain");
+        email.putExtra(email.EXTRA_SUBJECT, "JustJava order for " + name);
+        email.putExtra(email.EXTRA_TEXT, priceMessage);
+
+        if (email.resolveActivity(getPackageManager()) != null) {
+            startActivity(email);
+        }
         return priceMessage;
     }
 
@@ -108,15 +121,6 @@ public class MainActivity extends AppCompatActivity {
     private void displayQuantity(int quantityNumber) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + quantityNumber);
-    }
-
-
-    /**
-     * This method displays the given text on the screen.
-     */
-    private void displayMessage(String message) {
-        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
-        orderSummaryTextView.setText(message);
     }
 
     @Override
