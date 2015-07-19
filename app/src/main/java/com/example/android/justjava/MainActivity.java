@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         Intent email= new Intent(Intent.ACTION_SEND);
         email.setData(Uri.parse("mailto:"));
         email.setType("text/plain");
-        email.putExtra(email.EXTRA_SUBJECT, getString(R.string.order_summary_email_subject) + name);
+        email.putExtra(email.EXTRA_SUBJECT, getString(R.string.order_summary_email_subject) + " " + name);
         email.putExtra(email.EXTRA_TEXT, message);
 
         if (email.resolveActivity(getPackageManager()) != null) {
@@ -87,10 +87,10 @@ public class MainActivity extends AppCompatActivity {
      */
     private String createOrderSummary(int price, boolean hasWhippedCream, boolean hasChocolate, String name){
 
-        String priceMessage =  getString(R.string.order_summary_name) + name;
-        priceMessage += "\n" + getString(R.string.order_summary_quantity) + quantity;
-        priceMessage += "\n" + getString(R.string.order_summary_whipped_cream) + hasWhippedCream ;
-        priceMessage += "\n" + getString(R.string.order_summary_chocolate) + hasChocolate;
+        String priceMessage =  getString(R.string.order_summary_name) + " " +  name;
+        priceMessage += "\n" + getString(R.string.order_summary_quantity) + " " + quantity;
+        priceMessage += "\n" + getString(R.string.order_summary_whipped_cream) + " " + hasWhippedCream ;
+        priceMessage += "\n" + getString(R.string.order_summary_chocolate) + " " + hasChocolate;
         priceMessage += "\n" + getString(R.string.order_summary_price) + price;
         priceMessage += "\n" + getString(R.string.thank_you);
 
